@@ -48,3 +48,28 @@ print(f"Ilość liter imienia {second_person.name}: {second_person.name_length},
 print(f"Ilość liter imienia {third_person.name}: {third_person.name_length}, ilość liter nazwiska {third_person.surname}: {third_person.surname_length}")
 print(f"Ilość liter imienia {fourth_person.name}: {fourth_person.name_length}, ilość liter nazwiska {fourth_person.surname}: {fourth_person.surname_length}")
 print(f"Ilość liter imienia {fifth_person.name}: {fifth_person.name_length}, ilość liter nazwiska {fifth_person.surname}: {fifth_person.surname_length}")
+#podpunkt 4
+from faker import Faker
+fake = Faker()
+class BusinessCard:
+    def __init__(self, name, address, email):
+        self.name = name
+        self.address = address
+        self.email = email
+
+    def __repr__(self):
+        return f"{self.name}, {self.address}, {self.email}"
+
+def create_contacts(amount):
+    return [
+        BusinessCard(
+            name=fake.name(), 
+            address = fake.address(), 
+            email=fake.email()
+        )
+        for _ in range(amount)
+    ]
+
+contacts = create_contacts(5)
+for contact in contacts:
+    print(contact)
